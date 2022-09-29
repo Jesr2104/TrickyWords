@@ -49,12 +49,14 @@ async function configuration(){
 
 // function to insert a new form to save a question
 function insertQuestion(e){
-    e.preventDefault()
+    e.preventDefault();
 
-    questionsContainers.innerHTML += `
-    <button id="submit">Submit</button
-    `
+    let contenerdor = document.getElementById('questions');
 
+    let clon = document.querySelector('.clonar');
+    let newClon = clon.cloneNode(true);
+
+    contenerdor.appendChild(newClon).classList.remove('clonar');
 }
 
 // function to insert de new word on the server

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <!-- Link to css file -->
+        <link rel="stylesheet" href="styles/main.css">
+
+        <!-- Title for the web -->
+        <title>TrickyWords-API-Manager</title>
+
+        <!-- Link icons Material Design -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Import to Firebase library -->
+        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage-compat.js"></script>
+
+        <!-- library to get the unique ID -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
+
+        <!-- import library of the dialog alert SweetAlert -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </head>
+
+    <body>
+
+        <h1>TrickyWords API Manager</h1>
+
+        <!-- Button to call the form to insert new word on api -->
+        <button id="insertWord-btn" class="button is-primary">Insert New Word</button>
+
+        <!-- Modals -->
+        <!----------------------------------------->
+
+        <!-- Card to insert new word -->
+        <div class="modal" id="modal-insert-word">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+
+                <!-- header of the Card to insert new word -->
+                <header class="modal-card-head">
+                    <h1 id="modalTitle">Insert word</h1>
+                    <div>
+                        <button class="delete" aria-label="close" id="closeModalInsertWord-btn"></button>
+                    </div>                    
+                </header>
+
+                <!-- Section for the main form --> 
+                <section class="modal-card-body">
+                    <!-- Content ... -->
+                    <form id="insertWord-form">
+
+                        <!-- Table for word and type -->
+                        <table style="width: 100%;">
+                            <tr>
+                              <td>
+                                <!-- field trickyword -->
+                                <div class="field" style=" width: 100%; padding-right: 15px;">
+                                    <label class="label">Trickyword*</label>
+                                    <div class="control">
+                                        <input class="input" type="text" id="trickyword" placeholder="Trickyword">
+                                    </div>
+                                </div>
+                              </td>
+
+                              <td>
+                                <!-- field type of word -->
+                                <div class="field">
+                                    <label class="label">Type*</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select id="type-word">
+                                            <option value="0">Select type of word</option>
+                                            <option value="1">Verbs</option>
+                                            <option value="2">Adjectives</option>
+                                            <option value="3">Nouns</option>
+                                            <option value="4">Phrasal verb</option>
+                                            <option value="5">Expression</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                              </td>
+                            </tr>
+                        </table>
+
+                        <!-- Table for deficult, book and lesson -->
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>
+                                    <div class="field">
+                                        <label class="label">Dificult*</label>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select id="dificult">
+                                                <option>Select dificult</option>
+                                                <option value="1">Easy</option>
+                                                <option value="2">Medium</option>
+                                                <option value="3">Hard</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </td>
+
+                                <td>
+                                    <!-- field Book -->
+                                    <div class="field">
+                                        <label class="label">Book*</label>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select id="book">
+                                                <option>Select book</option>
+                                                <option value="1">Book 1</option>
+                                                <option value="2">Book 2</option>
+                                                <option value="3">Book 3</option>
+                                                <option value="4">Book 4</option>
+                                                <option value="5">Book 5</option>
+                                                <option value="6">Book 6</option>
+                                                <option value="7">Book 7</option>
+                                                <option value="8">Book 8</option>
+                                                <option value="9">Book 9</option>
+                                                <option value="10">Book 10</option>
+                                                <option value="11">Book 11</option>
+                                                <option value="12">Book 12</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <!-- field Nº Lesson -->
+                                    <div class="field">
+                                        <label class="label">Nº Lesson*</label>
+                                        <div class="control">
+                                            <input class="input" type="number" id="nlesson" placeholder="eg: lesson 108">
+                                        </div>
+                                    </div>                                
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Insert questions -->
+                        <div id="Insert-questions-containers" style="width: 100%;">
+                            <div id="titleAndbuttons">
+                                <h2 style="font-weight: bold;">Questions Lists*</h2>
+                                <button id="buttonToAddQuestions" class="button is-small is-responsive"> Add question </button>
+                            </div>
+                            <div id="questions" style="padding: 0rem 1.2rem 0.5rem 1.2rem; background-color: bisque; border-radius: 5px;">
+
+                                <!--  -->
+                                <label style="color: darkgrey; font-size: 12px;">Question #1</label>
+
+                                <!--  -->
+                                <div class="control">
+                                    <input class="input is-small" type="text" id="trickyword" placeholder="Questions...?">
+                                </div>
+                                
+                                <!--  -->
+                                <div style="display: flex; margin-bottom: 5px;">
+                                    <div>
+                                        <input class="input is-small" type="text" id="trickyword" placeholder="Correct answer">
+                                    </div>
+                                    <div>
+                                        <input class="input is-small" type="text" id="trickyword" placeholder="Answers a.">
+                                    </div>
+                                    <div>
+                                        <input class="input is-small" type="text" id="trickyword" placeholder="Answers b.">
+                                    </div>
+                                    <div>
+                                        <input class="input is-small" type="text" id="trickyword" placeholder="Answers c.">
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; justify-content: right;">
+                                    <span style="font-size: 10px; padding: 0px 5px 0px 5px; border-radius: 5px; background-color: red; color: white; font-weight: 500; cursor: pointer;"> Delete</span>
+                                </div>
+
+                                
+
+                            </div>
+                            
+                        </div>
+
+                </section>
+
+                <!-- section for footer --> 
+                <footer class="modal-card-foot">
+                    <button type="submit" class="button is-success">
+                        <span class="material-icons md-24"> save </span>
+                        <span> Insert </span>
+                    </button>
+                    </form>
+                </footer>
+            </div>
+        </div>
+        <!----------------------------------------->
+
+        <!-- Link to Js files -->
+        <script  src="js/app.js"></script> 
+    </body>
+</html>

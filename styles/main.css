@@ -1,0 +1,60 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+
+:root{
+     --white: #fff;
+     --black: #000;
+}
+
+/**************************************************/
+/* General directives                             */
+/**************************************************/
+body{
+    padding: 3rem;
+}
+
+form{
+    padding: 1rem;
+}
+
+.modal-card-head {
+    justify-content: space-between;
+    align-items: center;
+}
+
+/**************************************************/
+/* Modals show/hide                               */
+/**************************************************/
+.modal-insert{
+    display: flex;
+}
+
+/**************************************************/
+/* Body                                           */
+/**************************************************/
+
+#modalTitle{
+    font-size: 2rem; 
+    font-weight: bold;
+}
+
+
+#titleAndbuttons{
+    margin-top: 1.5rem;
+    border-radius: 5px;
+    background-color: #ddd; 
+    padding: 0.2rem 2rem 0.2rem 2rem; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    align-content: center;
+}
+
+#buttonToAddQuestions{
+    color: rgb(255, 255, 255);
+    font-weight: 900;
+    background-color: #34AF8A;
+    border-radius: 8px;
+
+}
+

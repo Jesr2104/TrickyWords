@@ -36,7 +36,6 @@
 
         <!-- Modals -->
         <!----------------------------------------->
-
         <!-- Card to insert new word -->
         <div class="modal" id="modal-insert-word">
             <div class="modal-background"></div>
@@ -61,7 +60,7 @@
                               <td>
                                 <!-- field trickyword -->
                                 <div class="field" style=" width: 100%; padding-right: 15px;">
-                                    <label class="label">Trickyword*</label>
+                                    <label class="label">Trickyword<mandatory>*</mandatory></label>
                                     <div class="control">
                                         <input class="input" type="text" id="trickyword" placeholder="Trickyword">
                                     </div>
@@ -71,10 +70,10 @@
                               <td>
                                 <!-- field type of word -->
                                 <div class="field">
-                                    <label class="label">Type*</label>
+                                    <label class="label">Type<mandatory>*</mandatory></label>
                                     <div class="control">
-                                        <div class="select">
-                                            <select id="type-word">
+                                        <div class="select" >
+                                            <select id="type-word" style="width: 350px;">
                                             <option value="0">Select type of word</option>
                                             <option value="1">Verbs</option>
                                             <option value="2">Adjectives</option>
@@ -94,7 +93,7 @@
                             <tr>
                                 <td>
                                     <div class="field">
-                                        <label class="label">Dificult*</label>
+                                        <label class="label">Dificult<mandatory>*</mandatory></label>
                                         <div class="control">
                                             <div class="select">
                                                 <select id="dificult">
@@ -111,7 +110,7 @@
                                 <td>
                                     <!-- field Book -->
                                     <div class="field">
-                                        <label class="label">Book*</label>
+                                        <label class="label">Book<mandatory>*</mandatory></label>
                                         <div class="control">
                                             <div class="select">
                                                 <select id="book">
@@ -137,7 +136,7 @@
                                 <td>
                                     <!-- field Nº Lesson -->
                                     <div class="field">
-                                        <label class="label">Nº Lesson*</label>
+                                        <label class="label">Nº Lesson<mandatory>*</mandatory></label>
                                         <div class="control">
                                             <input class="input" type="number" id="nlesson" placeholder="eg: lesson 108">
                                         </div>
@@ -149,43 +148,42 @@
                         <!-- Insert questions -->
                         <div id="Insert-questions-containers" style="width: 100%;">
                             <div id="titleAndbuttons">
-                                <h2 style="font-weight: bold;">Questions Lists*</h2>
+                                <h2 style="font-weight: bold;">Questions Lists<mandatory>*</mandatory></h2>
                                 <button id="buttonToAddQuestions" class="button is-small is-responsive"> Add question </button>
                             </div>
-                            <div id="questions" style="margin: 3px;">
-                                <div class="form-row clonar" style="margin-bottom: 3px; padding: 0rem 1.2rem 0.5rem 1.2rem; background-color: bisque; border-radius: 5px;">
-                                    <!--  -->
-                                    <label style="color: darkgrey; font-size: 12px;">Question #1</label>
+                            <div id="questions">
+                                <div class="form-question-row">
+                                    <!-- label of the questions number -->
+                                    <label id="labelNunQuestions">Question #1</label>
 
-                                    <!--  -->
+                                    <!-- input of the questions  -->
                                     <div class="control">
                                         <input class="input is-small" type="text" id="trickyword" placeholder="Questions...?">
                                     </div>
                                     
-                                    <!--  -->
-                                    <div style="display: flex; margin-bottom: 5px;">
+                                    <!-- input of the correct answer and que other 3 wrong options -->
+                                    <div id="containerOfOptions">
                                         <div>
                                             <input class="input is-small" type="text" id="trickyword" placeholder="Correct answer">
                                         </div>
                                         <div>
-                                            <input class="input is-small" type="text" id="trickyword" placeholder="Answers a.">
+                                            <input class="input is-small" type="text" id="trickyword" placeholder="Option a.">
                                         </div>
                                         <div>
-                                            <input class="input is-small" type="text" id="trickyword" placeholder="Answers b.">
+                                            <input class="input is-small" type="text" id="trickyword" placeholder="Option b.">
                                         </div>
                                         <div>
-                                            <input class="input is-small" type="text" id="trickyword" placeholder="Answers c.">
+                                            <input class="input is-small" type="text" id="trickyword" placeholder="Option c.">
                                         </div>
                                     </div>
 
-                                    <!--  -->
-                                    <div style="display: flex; justify-content: right;">
-                                        <span style="font-size: 10px; padding: 0px 5px 0px 5px; border-radius: 5px; background-color: red; color: white; font-weight: 500; cursor: pointer;"> Delete</span>
+                                    <!-- button for delete question -->
+                                    <div id="buttonRemove" class="no-seleccionable hide">
+                                        <span class="spanButtonRemove"> Delete</span>
                                     </div>
                                 </div>                                
                             </div>                            
                         </div>
-
                 </section>
 
                 <!-- section for footer --> 

@@ -17,6 +17,26 @@ form{
     padding: 1rem;
 }
 
+mandatory{
+    color: red
+}
+
+label{
+    font-size: 12px !important;
+    color: #a3a3a3 !important;
+}
+
+.no-seleccionable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+.hide{
+    display: none !important;
+}
+
 .modal-card-head {
     justify-content: space-between;
     align-items: center;
@@ -32,18 +52,20 @@ form{
 /**************************************************/
 /* Body                                           */
 /**************************************************/
-
 #modalTitle{
     font-size: 2rem; 
     font-weight: bold;
 }
 
-
+/**************************************************/
+/* form to insert questions                       */
+/**************************************************/
 #titleAndbuttons{
     margin-top: 1.5rem;
+    margin-bottom: 3px;
     border-radius: 5px;
     background-color: #ddd; 
-    padding: 0.2rem 2rem 0.2rem 2rem; 
+    padding: 0.2rem 0.3rem 0.2rem 1rem; 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
@@ -54,7 +76,38 @@ form{
     color: rgb(255, 255, 255);
     font-weight: 900;
     background-color: #34AF8A;
-    border-radius: 8px;
-
+    border-radius: 5px;
 }
 
+.form-question-row{
+    margin-bottom: 3px; 
+    padding: 0rem 1.2rem 0.5rem 1.2rem; 
+    background-color: rgb(125, 227, 154); 
+    border-radius: 5px;
+}
+
+.spanButtonRemove{
+    font-size: 10px;
+    padding: 0px 5px 0px 5px;
+    border-radius: 3px; 
+    background-color: #AF3359; 
+    color: white; 
+    font-weight: 500; 
+    cursor: pointer;
+}
+
+#labelNunQuestions{
+    color: white; 
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#containerOfOptions{
+    display: flex; 
+    margin-bottom: 5px;
+}
+
+#buttonRemove{
+    display: flex; 
+    justify-content: right;
+}

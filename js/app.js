@@ -1,5 +1,6 @@
 // vars 
 //--------------------------------------------------------------------------
+var numberOfQuestions = 1
 const endpointTrickyWordsDB = 'TrickyWordLisDB'
 
 // Modals
@@ -18,9 +19,6 @@ const closeModalInsertWord_btn = document.getElementById('closeModalInsertWord-b
 
 // button to insert a question on the form
 const addQuestion_btn = document.getElementById('buttonToAddQuestions')
-
-// container for the questions
-const questionsContainers = document.getElementsByName('questions')
 
 // Functions
 //--------------------------------------------------------------------------
@@ -51,12 +49,46 @@ async function configuration(){
 function insertQuestion(e){
     e.preventDefault();
 
-    let contenerdor = document.getElementById('questions');
+    numberOfQuestions+=1;
+    var div = document.createElement('div')
+    div.setAttribute('class', 'form-inline')
 
-    let clon = document.querySelector('.clonar');
-    let newClon = clon.cloneNode(true);
+    div.innerHTML = `
+        <div class="form-question-row">
+            <!-- label of the questions number -->
+            <label id="labelNunQuestions">Question #${numberOfQuestions}</label>
 
-    contenerdor.appendChild(newClon).classList.remove('clonar');
+            <!-- input of the questions  -->
+            <div class="control">
+                <input class="input is-small" type="text" id="trickyword" placeholder="Questions...?">
+            </div>
+            
+            <!-- input of the correct answer and que other 3 wrong options -->
+            <div id="containerOfOptions">
+                <div>
+                    <input class="input is-small" type="text" id="trickyword" placeholder="Correct answer">
+                </div>
+                <div>
+                    <input class="input is-small" type="text" id="trickyword" placeholder="Option a.">
+                </div>
+                <div>
+                    <input class="input is-small" type="text" id="trickyword" placeholder="Option b.">
+                </div>
+                <div>
+                    <input class="input is-small" type="text" id="trickyword" placeholder="Option c.">
+                </div>
+            </div>
+
+            <!-- button for delete question -->
+            <div id="buttonRemove" class="no-seleccionable">
+                <span class="spanButtonRemove"> Delete</span>
+            </div>
+        </div>
+    `
+
+    // Finally we insert the new form
+    contenerdor = document.getElementById('questions');
+    contenerdor.appendChild(div)
 }
 
 // function to insert de new word on the server
@@ -73,17 +105,23 @@ async function insertNewTrickyWord(e){
     var nbook_form = document.getElementById('book').value
     var nLesson_form = document.getElementById('nlesson').value    
     
-    var array1 = ['question', 'what is the meaning of Partly']
+    /*var array1 = ['question', 'what is the meaning of Partly']
     var array2 = ['correct','not completely']
     var array3 = ['incorrectA','completely']
     var array4 = ['incorrectB','party related']
     var array5 = ['incorrectC','something funny']
 
-    var questionslist = [array1, array2, array3, array4, array5];    
+    var questionslist = [array1, array2, array3, array4, array5];*/
+    
+    result  = document.querySelectorAll('.form-question-row')
+    console.log(result)
+
+
+    
 
     // Falta chequear que los valores no este vacios
 
-    postRef.set({
+    /*postRef.set({
         uid: getPostId(postRef.toString()),
         idTrickyWord: uuid.v4(),
         trickyWord: trickyWord_form,
@@ -92,7 +130,7 @@ async function insertNewTrickyWord(e){
         nbook: nbook_form,
         nLesson: nLesson_form,
         questions: questionslist,
-    });
+    });*/
         
     closeModal_InsertWord()
 }

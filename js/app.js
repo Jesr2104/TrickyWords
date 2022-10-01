@@ -1,6 +1,6 @@
 // vars 
 //--------------------------------------------------------------------------
-var numberOfQuestions = 1
+var numberOfQuestions = 2
 const endpointTrickyWordsDB = 'TrickyWordLisDB'
 
 // Modals
@@ -49,7 +49,6 @@ async function configuration(){
 function insertQuestion(e){
     e.preventDefault();
 
-    numberOfQuestions+=1;
     var div = document.createElement('div')
     div.setAttribute('class', 'form-inline')
 
@@ -81,7 +80,7 @@ function insertQuestion(e){
 
             <!-- button for delete question -->
             <div id="buttonRemove" class="no-seleccionable">
-                <span class="spanButtonRemove"> Delete</span>
+                <span class="spanButtonRemove" onclick="removeQuestionsForm(this)"> Delete</span>
             </div>
         </div>
     `
@@ -89,6 +88,37 @@ function insertQuestion(e){
     // Finally we insert the new form
     contenerdor = document.getElementById('questions');
     contenerdor.appendChild(div)
+    numberOfQuestions+=1;
+}
+
+//function to sort the index of the questions list
+function sortIndexOftheQuestions(){
+    var questionsList = getlistInsertedElements(document.querySelectorAll('.form-question-row'))
+
+    numberOfQuestions = 2;
+    var count = 0;
+    while(count < questionsList.length){
+        questionsList[count].getElementsByTagName('label')[0].innerHTML= 'Question # '+ numberOfQuestions;
+        count+=1;
+        numberOfQuestions += 1;
+    }    
+}
+
+// function to get the item that have been created dynamically
+function getlistInsertedElements(list){
+    var count = 1;
+    result = []
+    while(count < list.length){
+        result.push(list[count])
+        count +=1       
+    }
+    return result;
+}
+
+// to remove de element fron the dom
+function removeQuestionsForm(e){
+    e.parentNode.parentNode.remove()
+    sortIndexOftheQuestions()
 }
 
 // function to insert de new word on the server
@@ -105,33 +135,61 @@ async function insertNewTrickyWord(e){
     var nbook_form = document.getElementById('book').value
     var nLesson_form = document.getElementById('nlesson').value    
     
-    /*var array1 = ['question', 'what is the meaning of Partly']
-    var array2 = ['correct','not completely']
-    var array3 = ['incorrectA','completely']
-    var array4 = ['incorrectB','party related']
-    var array5 = ['incorrectC','something funny']
+    listFromForm  = document.querySelectorAll('.form-question-row');
+    var count = 0;
+    questionsList = [];
 
-    var questionslist = [array1, array2, array3, array4, array5];*/
-    
-    result  = document.querySelectorAll('.form-question-row')
-    console.log(result)
+    while(count < listFromForm.length){
+        const question = new Map();
 
+        valueQuestion = listFromForm[count].getElementsByTagName('input')[0].value
+        valueCorrectAnswer = listFromForm[count].getElementsByTagName('input')[1].value
+        valueOptiona = listFromForm[count].getElementsByTagName('input')[2].value
+        valueOptionb = listFromForm[count].getElementsByTagName('input')[3].value
+        valueOptionc = listFromForm[count].getElementsByTagName('input')[4].value
 
-    
+        if(!(valueQuestion === "") && !(valueCorrectAnswer === "") && 
+           !(valueOptiona === "") && !(valueOptionb === "") && !(valueOptionc === ""))
+        {
+            question.set('question', valueQuestion);
+            question.set('correctAnswer', valueCorrectAnswer);
+            question.set('optiona', valueOptiona);
+            question.set('optionb', valueOptionb);
+            question.set('optionc', valueOptionc);
+            questionsList.push(question)
+        }
+        count += 1
+    }
 
-    // Falta chequear que los valores no este vacios
+    if(!(questionsList.length === 0) && !(trickyWord_form === "") && !(type_form === "Select type of word") && 
+       !(dificult_form === "Select dificult") && !(nbook_form === "Select book") && !(nLesson_form === ""))
+    {
+        postRef.set({
+            uid: getPostId(postRef.toString()),
+            idTrickyWord: uuid.v4(),
+            trickyWord: trickyWord_form,
+            type: type_form ,
+            dificult: dificult_form,
+            nbook: nbook_form,
+            nLesson: nLesson_form,
+        });
 
-    /*postRef.set({
-        uid: getPostId(postRef.toString()),
-        idTrickyWord: uuid.v4(),
-        trickyWord: trickyWord_form,
-        type: type_form ,
-        dificult: dificult_form,
-        nbook: nbook_form,
-        nLesson: nLesson_form,
-        questions: questionslist,
-    });*/
+        var commentsRef = firebase.database().ref(endpointTrickyWordsDB + '/' + getPostId(postRef.toString()) + '/questions');
+
+        for(let i = 0; i < questionsList.length; i++){
+            var newpost = commentsRef.push();
+            newpost.set({
+                question: questionsList[i].get('question'),
+                correctAnswer: questionsList[i].get('correctAnswer'),
+                optiona: questionsList[i].get('optiona'),
+                optionb: questionsList[i].get('optionb'),
+                optionc: questionsList[i].get('optionc'),
+            })
+        }
         
+    } else {
+        console.log("emtpy")
+    }
     closeModal_InsertWord()
 }
 

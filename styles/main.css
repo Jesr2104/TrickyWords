@@ -1,16 +1,28 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap');
 
 :root{
      --white: #fff;
      --black: #000;
+
+     --mainheader: #282b3f;
+     --mainBackground: #2c3246;
+
+     --titleApp: #d77420;
+
+     --button_insert: #27cbb9;
+     --button_edit: #febc46;
+     --button_delete: #e7537f;
+
 }
 
 /**************************************************/
 /* General directives                             */
 /**************************************************/
 body{
-    padding: 3rem;
+    font-family: 'Comfortaa', cursive; 
+    background-color: var(--mainBackground); 
 }
 
 form{
@@ -56,6 +68,88 @@ label{
     font-size: 2rem; 
     font-weight: bold;
 }
+
+/**************************************************/
+/* header                                           */
+/**************************************************/
+#containerHeader{
+    display: flex;
+    padding: 1.5rem;
+    background-color: var(--mainheader);
+}
+
+#logoAndName{    
+    width: 70%;
+    display: flex;
+    align-items: center;
+    color: var(--titleApp);
+}
+
+#options{
+    width: 30%;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;  
+}
+
+#logoHeader{
+    border-radius: 10px;
+}
+
+#titleHeader{
+    font-size: 35px;
+    padding-left: 15px;
+    font-family: 'Freckle Face', cursive;
+}
+
+/* Buttons menus style */
+/*-------------------------------*/
+.buttonsMenu{
+    display: inline-flex;
+    padding: 0;
+    background-color: #34AF8A;
+    border: none;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.buttonsMenu:hover{
+    background: #298a6d;    
+}
+
+#buttonsMenu_text, #buttonsMenu_icon{
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+    color: white;
+    height: 100%;
+}
+
+#buttonsMenu_icon{
+    background: rgba(0, 0, 0, 0.08);
+}
+
+#buttonsMenu_insert{
+    background: var(--button_insert);
+}
+
+#buttonsMenu_edit{
+    background: var(--button_edit);
+}
+
+#buttonsMenu_delete{
+    background: var(--button_delete);
+}
+/*-------------------------------*/
+
+
+
+
+
+
 
 /**************************************************/
 /* form to insert questions                       */

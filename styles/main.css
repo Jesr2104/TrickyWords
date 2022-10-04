@@ -1,6 +1,6 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
 
 :root{
      --white: #fff;
@@ -10,11 +10,11 @@
      --mainBackground: #2c3246;
 
      --titleApp: #d77420;
+     --titleHover: #67abf3;
 
      --button_insert: #27cbb9;
      --button_edit: #febc46;
      --button_delete: #e7537f;
-
 }
 
 /**************************************************/
@@ -62,27 +62,27 @@ label{
 }
 
 /**************************************************/
-/* Body                                           */
-/**************************************************/
-#modalTitle{
-    font-size: 2rem; 
-    font-weight: bold;
-}
-
-/**************************************************/
 /* header                                           */
 /**************************************************/
 #containerHeader{
     display: flex;
     padding: 1.5rem;
     background-color: var(--mainheader);
+    height: 15vh; /* height of the nav-bar*/
 }
 
 #logoAndName{    
     width: 70%;
+}
+
+#link_main{
     display: flex;
     align-items: center;
     color: var(--titleApp);
+}
+
+#link_main:hover{
+    color: var(--titleHover);
 }
 
 #options{
@@ -99,7 +99,7 @@ label{
 #titleHeader{
     font-size: 35px;
     padding-left: 15px;
-    font-family: 'Freckle Face', cursive;
+    font-family: 'League Gothic', sans-serif;
 }
 
 /* Buttons menus style */
@@ -114,10 +114,6 @@ label{
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
-}
-
-.buttonsMenu:hover{
-    background: #298a6d;    
 }
 
 #buttonsMenu_text, #buttonsMenu_icon{
@@ -136,20 +132,41 @@ label{
     background: var(--button_insert);
 }
 
+#buttonsMenu_insert:hover{
+    filter: brightness(70%);
+}
+
 #buttonsMenu_edit{
     background: var(--button_edit);
+}
+
+#buttonsMenu_edit:hover{
+    filter: brightness(70%);
 }
 
 #buttonsMenu_delete{
     background: var(--button_delete);
 }
+
+#buttonsMenu_delete:hover{
+    filter: brightness(70%);
+}
+
 /*-------------------------------*/
 
+/**************************************************/
+/* Body                                           */
+/**************************************************/
+#modalTitle{
+    font-size: 2rem; 
+    font-weight: bold;
+}
 
-
-
-
-
+.main-content{
+    width: 100%;
+    height: 85vh; /* height of the main content*/
+    padding: 2.5rem;
+}
 
 /**************************************************/
 /* form to insert questions                       */
@@ -204,4 +221,21 @@ label{
 #buttonRemove{
     display: flex; 
     justify-content: right;
+}
+
+/**************************************************/
+/* List of the questions styles                   */
+/**************************************************/
+#tableWordsList {
+    box-shadow: 0 0 0.3rem 0 rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr { 
+    border: solid;
+    border-width: 1px 0;
 }

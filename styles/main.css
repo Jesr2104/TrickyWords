@@ -244,10 +244,19 @@ tr {
     padding: 10px; 
 }
 
+.control{
+    min-width: 120px;
+    background-color: #04040448;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px #e8e9eb2f;
+}
 
-.wordItem{
+.table_labels{
     color: white;
-    display: flex;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
 }
 
 

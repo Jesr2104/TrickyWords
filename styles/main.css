@@ -1,6 +1,7 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root{
      --white: #fff;
@@ -11,6 +12,8 @@
 
      --titleApp: #d77420;
      --titleHover: #67abf3;
+
+     --itemsColors: #0C81FF;
 
      --button_insert: #27cbb9;
      --button_edit: #febc46;
@@ -233,31 +236,52 @@ mandatory{
     color: var(--titleApp);
 }
 
-tr { 
-    border: solid;
-    border-width: 1px 0px;
-}
-
 #titleTableOflistOfWords{
     color: white; 
     font-size: 25px; 
     padding: 10px; 
 }
 
-.control{
-    min-width: 120px;
-    background-color: #04040448;
-    padding: 5px;
-    border-radius: 5px;
-    border: solid 1px #e8e9eb2f;
+tr{ 
+    border: solid;
+    border-width: 1px 0px;
 }
 
-.table_labels{
-    color: white;
-    font-size: 12px;
-    font-weight: 500;
-    font-style: italic;
+#trickingWordContainers{
+    border-radius: 15px; 
+    border-left: solid 5px #cfcfcf; 
+    margin: 20px; 
+    box-shadow: 3px 3px 3px 1px rgba(205, 205, 205, 0.123); 
+    background-color: var(--itemsColors);
+
+    /* setup the roboto in all table */
+    font-family: 'Roboto', sans-serif;
 }
+
+#itemTrickingWord{
+    display: flex; 
+    color: white;
+}
+
+#idItem{
+    display: flex; 
+    align-items: center; 
+    font-size: 30px; 
+    padding: 6px; 
+    color: white;
+
+    background-color: #00000030;
+    border-radius: 15px 0px 0px 15px;
+}
+
+#contentItem{
+    width: 100%;
+}
+
+
+
+
+
 
 
 

@@ -274,6 +274,38 @@ tr{
     border-radius: 15px 0px 0px 15px;
 }
 
+#numberOfItem{
+    font-size: 45px;
+}
+
 #contentItem{
     width: 100%;
+}
+
+#informationTrickingWord{
+    display: flex; 
+    padding: 10px 10px 0px 10px;
+}
+
+#wordContainer{
+    padding: 5px; 
+    line-height: 0.9;
+}
+
+#labels_wordValue{
+    font-size: 45px;
+}
+
+.labels_title{
+    display: block;
+    font-size: 10px;
+}
+
+.labels_informationValues{
+    font-size: 20px;
+}
+
+.field-label{
+    padding: 5px; 
+    line-height: 1.1;
 }

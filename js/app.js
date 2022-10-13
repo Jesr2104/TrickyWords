@@ -43,7 +43,7 @@ async function configuration(){
       };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-} 
+}
 
 // function to insert a new form to save a question
 function insertQuestion(e){
@@ -200,7 +200,7 @@ async function insertNewTrickyWord(e){
 closeModalInsertWord_btn.addEventListener('click', closeModal_InsertWord)
 
 //event to call de form to insert new word
-openInsertWord_btn.addEventListener('click', showModal_InsertWord)
+//openInsertWord_btn.addEventListener('click', showModal_InsertWord)
 
 // event to insert de new word on the server
 insertWord_btn.addEventListener('submit', insertNewTrickyWord)

@@ -20,6 +20,9 @@ const closeModalInsertWord_btn = document.getElementById('closeModalInsertWord-b
 // button to insert a question on the form
 const addQuestion_btn = document.getElementById('buttonToAddQuestions')
 
+// container of the tricking words
+const trickingWordContaines = document.getElementById('trickingWordContainers')
+
 // Functions
 //--------------------------------------------------------------------------
 
@@ -131,7 +134,7 @@ async function insertNewTrickyWord(e){
     //get data of from the form
     var trickyWord_form = document.getElementById('trickyword').value
     var type_form = document.getElementById('type-word').value
-    var dificult_form = document.getElementById('dificult').value
+    var difficult_form = document.getElementById('difficult').value
     var nbook_form = document.getElementById('book').value
     var nLesson_form = document.getElementById('nlesson').value    
     
@@ -162,14 +165,14 @@ async function insertNewTrickyWord(e){
     }
 
     if(!(questionsList.length === 0) && !(trickyWord_form === "") && !(type_form === "Select type of word") && 
-       !(dificult_form === "Select dificult") && !(nbook_form === "Select book") && !(nLesson_form === ""))
+       !(difficult_form === "Select difficult") && !(nbook_form === "Select book") && !(nLesson_form === ""))
     {
         postRef.set({
             uid: getPostId(postRef.toString()),
             idTrickyWord: uuid.v4(),
             trickyWord: trickyWord_form,
             type: type_form ,
-            dificult: dificult_form,
+            difficult: difficult_form,
             nbook: nbook_form,
             nLesson: nLesson_form,
         });
@@ -193,6 +196,167 @@ async function insertNewTrickyWord(e){
     closeModal_InsertWord()
 }
 
+// function to get information fron the server
+async function getDataFromDatabase(){
+    const dbRef = firebase.database().ref()
+    dbRef.child(endpointTrickyWordsDB).get().then((snapshot) => {
+        if(snapshot.exists()) {
+            var trickWordList = [];
+            snapshot.forEach(childSnapshot => {
+                trickWordList.push(childSnapshot.val())                
+            });
+            loadTrickingWordOntheTable(trickWordList)
+        } else {
+            // case: data base is empty
+            console.log("No data available")
+        }
+    })                
+}
+
+function loadTrickingWordOntheTable(trickWordList){
+    count = 0;
+    while(count < trickWordList.length){
+        trickingWordContaines.innerHTML +=  getItemSetup(trickWordList[count], count + 1)
+        count += 1;
+    }
+}
+
+function getType(typeCode){
+    if(typeCode == 1){
+        return "Verbs"
+    } else if(typeCode == 2){
+        return "Adjectives"
+    } else if(typeCode == 3){
+        return "Nouns"
+    } else if(typeCode == 4){
+        return "Phrasal verb"
+    } else if(typeCode == 5){
+        return "Expression"
+    } 
+}
+
+function getBookName(bookNumber){
+    return `Callan #${bookNumber}`
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function getItemSetup(item, numberItem){
+    questionList = ""
+    
+    Object.keys(item.questions).forEach(itemNew => {
+        console.log(item.questions[itemNew])
+
+        questionList += `
+        <div style="border: solid 1px white; border-radius: 5px; margin: 10px 0 10px 0; padding: 10px; background-color: rgba(0, 0, 0, 0.150);">
+            <div style="margin-bottom: 5px;">
+                <label style="font-size: 18px;"><u>${capitalizeFirstLetter(item.questions[itemNew].question)}</u></label>
+            </div>
+
+            <div style="display: flex;">
+
+                <div style="margin-right: 10px;">
+                    <div class="field" style="padding: 5px; line-height: 1.1;">
+                        <label class="table_labels" style="display: block;font-size: 10px;">Correct Answer:</label>
+                        <label class="result_value" style="font-size: 20px;">${capitalizeFirstLetter(item.questions[itemNew].correctAnswer)}</label>
+                    </div>
+                </div>
+
+                <div style="background-color: white; padding: 0.5px;"></div>
+
+                <div style="margin: 0 10px 0 10px;">
+                    <div class="field" style="padding: 5px; line-height: 1.1;">
+                        <label class="table_labels" style="display: block;font-size: 10px;">Option 1:</label>
+                        <label class="result_value" style="font-size: 20px;">${capitalizeFirstLetter(item.questions[itemNew].optiona)}</label>
+                    </div>
+                </div>
+
+                <div style="background-color: white; padding: 0.5px;"></div>
+
+                <div style="margin: 0 10px 0 10px;">
+                    <div class="field" style="padding: 5px; line-height: 1.1;">
+                        <label class="table_labels" style="display: block;font-size: 10px;">Option 2:</label>
+                        <label class="result_value" style="font-size: 20px;">${capitalizeFirstLetter(item.questions[itemNew].optionb)}</label>
+                    </div>
+                </div>
+
+                <div style="background-color: white; padding: 0.5px;"></div>
+
+                <div style="margin-left: 10px;">
+                    <div class="field" style="padding: 5px; line-height: 1.1;">
+                        <label class="table_labels" style="display: block;font-size: 10px;">Option 3:</label>
+                        <label class="result_value" style="font-size: 20px;">${capitalizeFirstLetter(item.questions[itemNew].optionc)}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+    })
+    
+    newItem = `
+    <!-- Item Number 1 -->
+    <div id="itemTrickingWord">
+        <!-- number of the items -->
+        <div id="idItem">
+            <label id="numberOfItem">${numberItem}</label>                                                
+        </div>
+        <div id="contentItem">
+            <!-- information of he word -->
+            <div id="informationTrickingWord">
+                <div>
+                    <div id="wordContainer">
+                        <label class="labels_title">Word:</label>
+                        <label id="labels_wordValue">${item.trickyWord}</label>
+                    </div>
+                </div>
+
+                <div style="padding-left: 15px;">
+                    <div style="padding: 5px; line-height: 1.1; margin-bottom: 0px !important;">
+                        <label class="labels_title">Type:</label>
+                        <label class="labels_informationValues">${getType(item.type)}</label>
+                    </div>
+                    
+                    <div style="padding: 5px; line-height: 1.1;">
+                        <label class="labels_title">Difficult:</label>
+                        <label class="labels_informationValues">${item.difficult}</label>
+                    </div>
+                </div>
+
+                <!-- while line in vertical -->
+                <div style="background-color: white; padding: 1px; margin: 10px;"></div>
+
+                <div style="display: flex;">
+                    <div>
+                        <div style="padding: 5px; line-height: 1.1;">
+                            <label class="labels_title">Book nº:</label>
+                            <label class="labels_informationValues">${getBookName(item.nbook)}</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="padding: 5px; line-height: 1.1;">
+                            <label class="labels_title">lesson:</label>
+                            <label class="labels_informationValues">${item.nLesson}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- questions lists -->
+            <div style="padding: 0 10px 0 10px;">
+                <label style="font-size: 22px;">Questions</label>
+                <div style="background-color: white; padding: 0.03em; margin-bottom: 3px;"></div>
+                <div style="background-color: white; padding: 0.03em"></div>
+                ${questionList}
+            </div>
+        </div>
+    </div>
+    `
+    return newItem
+}
+
 // Events control -------------------->>>>
 //-------------------------------------------------------------------------
 
@@ -210,3 +374,4 @@ addQuestion_btn.addEventListener('click', insertQuestion)
 
 // Functions main call  -------------------->>>>
 configuration() // function to setup the firebase database
+getDataFromDatabase()

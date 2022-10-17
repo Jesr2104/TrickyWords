@@ -9,7 +9,7 @@ const modalInsertword = document.getElementById('modal-insert-word')
 //==========================================================================
 
 // button to insert new trickyWord
-const openInsertWord_btn = document.getElementById('insertWord-btn')
+const openInsertWord_btn = document.getElementById('buttonsMenu_insert')
 
 // button to sent data to the server to insert the new word
 const insertWord_btn = document.getElementById('insertWord-form')
@@ -247,8 +247,6 @@ function getItemSetup(item, numberItem){
     questionList = ""
     
     Object.keys(item.questions).forEach(itemNew => {
-        console.log(item.questions[itemNew])
-
         questionList += `
         <div style="border: solid 1px white; border-radius: 5px; margin: 10px 0 10px 0; padding: 10px; background-color: rgba(0, 0, 0, 0.150);">
             <div style="margin-bottom: 5px;">
@@ -296,7 +294,7 @@ function getItemSetup(item, numberItem){
     })
     
     newItem = `
-    <!-- Item Number 1 -->
+    <!-- Item Number ${numberItem} -->
     <div id="itemTrickingWord">
         <!-- number of the items -->
         <div id="idItem">
@@ -354,7 +352,15 @@ function getItemSetup(item, numberItem){
         </div>
     </div>
     `
-    return newItem
+
+    itemContainer = `
+    <!-- newItemContainer -->
+        <div id="item-TrickingWords">
+            ${newItem}            
+        </div>
+    `
+
+    return itemContainer
 }
 
 // Events control -------------------->>>>
@@ -364,7 +370,7 @@ function getItemSetup(item, numberItem){
 closeModalInsertWord_btn.addEventListener('click', closeModal_InsertWord)
 
 //event to call de form to insert new word
-//openInsertWord_btn.addEventListener('click', showModal_InsertWord)
+openInsertWord_btn.addEventListener('click', showModal_InsertWord)
 
 // event to insert de new word on the server
 insertWord_btn.addEventListener('submit', insertNewTrickyWord)

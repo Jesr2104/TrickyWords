@@ -360,9 +360,11 @@ function getItemSetup(item, numberItem){
 
     itemContainer = `
     <!-- newItemContainer -->
-        <div id="item-TrickingWords">
-            ${newItem}            
-        </div>
+        <tr style="width: 100%;">
+            <div id="item-TrickingWords">
+                ${newItem}            
+            </div>
+        </tr>
     `
 
     return itemContainer

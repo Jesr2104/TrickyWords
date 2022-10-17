@@ -226,10 +226,14 @@ mandatory{
     padding: 10px;
 }
 
+#trickingWordContainers{
+    width: 100%;
+}
+
 #item-TrickingWords{
     border-radius: 15px; 
     border-left: solid 5px #cfcfcf; 
-    margin: 20px; 
+    margin: 8px 20px ; 
     box-shadow: 3px 3px 3px 1px rgba(205, 205, 205, 0.123); 
     background-color: var(--itemsColors);
 
@@ -273,7 +277,7 @@ mandatory{
 
 #labels_wordValue{
     font-size: 45px;
-    text-shadow: 3px 3px var(--titleApp);
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.203);
 }
 
 .labels_title{

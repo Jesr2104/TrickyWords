@@ -213,6 +213,7 @@ async function getDataFromDatabase(){
     })                
 }
 
+// function to load the tricking word on the table
 function loadTrickingWordOntheTable(trickWordList){
     count = 0;
     while(count < trickWordList.length){
@@ -221,6 +222,7 @@ function loadTrickingWordOntheTable(trickWordList){
     }
 }
 
+// function to get the type on text
 function getType(typeCode){
     if(typeCode == 1){
         return "Verbs"
@@ -235,14 +237,17 @@ function getType(typeCode){
     } 
 }
 
+// function to create que number of the complete
 function getBookName(bookNumber){
     return `Callan #${bookNumber}`
 }
 
+// function to become the first letter on uppercase
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// create the view of the item word
 function getItemSetup(item, numberItem){
     questionList = ""
     

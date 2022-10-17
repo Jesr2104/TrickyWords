@@ -70,14 +70,11 @@ mandatory{
 /* header                                           */
 /**************************************************/
 #containerHeader{
-    display: flex;
-    padding: 1.5rem;
-    background-color: var(--mainheader);
-    height: 15vh; /* height of the nav-bar*/
-}
-
-#logoAndName{    
-    width: 70%;
+    background-color: var(--mainheader); 
+    padding: 1rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
 }
 
 #link_main{
@@ -90,15 +87,12 @@ mandatory{
     color: var(--titleHover);
 }
 
-#options{
-    width: 30%;
-    display: flex;
-    justify-content: right;
-    align-items: flex-end;  
-}
-
 #logoHeader{
     border-radius: 10px;
+}
+
+#logoAndName{
+    margin-right: 15px;
 }
 
 #titleHeader{

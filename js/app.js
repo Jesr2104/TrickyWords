@@ -1,7 +1,7 @@
 // vars 
 //--------------------------------------------------------------------------
 var numberOfQuestions = 2
-const endpointTrickyWordsDB = 'TrickyWordLisDB'
+const endpointTrickyWordsDB = 'TrickyWord_BooksLisDB'
 
 // Modals
 //==========================================================================
@@ -20,14 +20,14 @@ const closeModalInsertWord_btn = document.getElementById('closeModalInsertWord-b
 // button to insert a question on the form
 const addQuestion_btn = document.getElementById('buttonToAddQuestions')
 
-// container of the tricking words
-const trickingWordContaines = document.getElementById('trickingWordContainers')
+// container of the tricky words
+const trickyWordContaines = document.getElementById('trickyWordContainers')
 
 // Functions
 //--------------------------------------------------------------------------
 
 // funcion to show and close de Insert tricky word
-function showModal_InsertWord(){ modalInsertword.classList.add('modal-insert'); }
+function showModal_InsertWord(){ clearInsertForm(); modalInsertword.classList.add('modal-insert');}
 function closeModal_InsertWord(){ modalInsertword.classList.remove('modal-insert'); }
 
 // function to getPostId
@@ -189,11 +189,59 @@ async function insertNewTrickyWord(e){
                 optionc: questionsList[i].get('optionc'),
             })
         }
+        closeModal_InsertWord() // function to close the modal to insert new trickword
+        getDataFromDatabase() // function to get de update data from the server
         
-    } else {
-        console.log("emtpy")
+    } else{ swal("Warning!!", "Any of the required fields are empty!!"); }
+    
+}
+
+// function to clear the insert form
+function clearInsertForm(){
+    // clear the form for the new insert
+    document.getElementById('trickyword').value = "";
+    document.getElementById('type-word').value = 0;
+    document.getElementById('difficult').value = 0;
+    document.getElementById('book').value = 0;
+    document.getElementById('nlesson').value = "";
+
+    listFromForm  = document.querySelectorAll('.form-inline');
+    var count = 0;
+
+    while(count < listFromForm.length){        
+        listFromForm[count].remove()
+        count += 1
     }
-    closeModal_InsertWord()
+
+    // clear the first questions
+    document.getElementById('question_Q1').value = ""
+    document.getElementById('correctAnswer_Q1').value = ""
+    document.getElementById('optionA_Q1').value = ""
+    document.getElementById('optionB_Q1').value = ""
+    document.getElementById('optionC_Q1').value = ""
+}
+
+// function to delete one tricky word from the server
+function deleteTrickyWord(){
+
+}
+
+// function to get item selection
+function getItemSelection(itemCode){
+
+    var index;
+    var table = document.getElementById('trickyWordContainers');
+
+    for(var i = 0; i < table.rows.length; i++){
+        table.rows[i].classList.remove('selected-row')
+    }
+
+    for(var i = 0; i < table.rows.length; i++){
+        table.rows[i].onclick = function(){
+            this.classList.add('selected-row');
+            console.log(this)
+        }
+    }
 }
 
 // function to get information fron the server
@@ -205,7 +253,7 @@ async function getDataFromDatabase(){
             snapshot.forEach(childSnapshot => {
                 trickWordList.push(childSnapshot.val())                
             });
-            loadTrickingWordOntheTable(trickWordList)
+            //loadTrickyWordOntheTable(trickWordList)
         } else {
             // case: data base is empty
             console.log("No data available")
@@ -213,14 +261,16 @@ async function getDataFromDatabase(){
     })                
 }
 
-// function to load the tricking word on the table
-function loadTrickingWordOntheTable(trickWordList){
+// function to load the tricky word on the table
+/*function loadTrickyWordOntheTable(trickWordList){
     count = 0;
+    trickyWordContaines.innerHTML = ""
+
     while(count < trickWordList.length){
-        trickingWordContaines.innerHTML +=  getItemSetup(trickWordList[count], count + 1)
+        trickyWordContaines.innerHTML +=  getItemSetup(trickWordList[count], count + 1)
         count += 1;
     }
-}
+}*/
 
 // function to get the type on text
 function getType(typeCode){
@@ -237,6 +287,13 @@ function getType(typeCode){
     } 
 }
 
+// fuction to show the difficulty of the tricky word
+function getDifficulty(difficultyCode){
+    if(difficultyCode == 1){ return "Easy" } 
+    else if(difficultyCode == 2){ return "Medium"} 
+    else{ return "Hard" }
+}
+
 // function to create que number of the complete
 function getBookName(bookNumber){
     return `Callan #${bookNumber}`
@@ -248,7 +305,7 @@ function capitalizeFirstLetter(string) {
 }
 
 // create the view of the item word
-function getItemSetup(item, numberItem){
+/*function getItemSetup(item, numberItem){
     questionList = ""
     
     Object.keys(item.questions).forEach(itemNew => {
@@ -300,14 +357,14 @@ function getItemSetup(item, numberItem){
     
     newItem = `
     <!-- Item Number ${numberItem} -->
-    <div id="itemTrickingWord">
+    <div id="itemTrickyWord">
         <!-- number of the items -->
         <div id="idItem">
             <label id="numberOfItem">${numberItem}</label>                                                
         </div>
         <div id="contentItem">
             <!-- information of he word -->
-            <div id="informationTrickingWord">
+            <div id="informationTrickyWord">
                 <div>
                     <div id="wordContainer">
                         <label class="labels_title">Word:</label>
@@ -323,7 +380,7 @@ function getItemSetup(item, numberItem){
                     
                     <div style="padding: 5px; line-height: 1.1;">
                         <label class="labels_title">Difficult:</label>
-                        <label class="labels_informationValues">${item.difficult}</label>
+                        <label class="labels_informationValues">${getDifficulty(item.difficult)}</label>
                     </div>
                 </div>
 
@@ -361,14 +418,16 @@ function getItemSetup(item, numberItem){
     itemContainer = `
     <!-- newItemContainer -->
         <tr style="width: 100%;">
-            <div id="item-TrickingWords">
-                ${newItem}            
-            </div>
+            <td style="cursor: pointer;" onclick="getItemSelection(this)">
+                <div id="item-TrickyWords">
+                    ${newItem}            
+                </div>
+            </td>
         </tr>
     `
 
     return itemContainer
-}
+}*/
 
 // Events control -------------------->>>>
 //-------------------------------------------------------------------------
@@ -384,6 +443,16 @@ insertWord_btn.addEventListener('submit', insertNewTrickyWord)
 
 // event to add a question on the form 
 addQuestion_btn.addEventListener('click', insertQuestion)
+
+document.getElementById('buttonsMenu_edit').addEventListener('click', (e) => {
+    document.getElementById('trickyWordContainers').innerHTML += `
+        <tr>
+            <td id="tableItemsRows" onclick="getItemSelection(this)">
+                Element
+            </td>
+        </tr>
+    `
+})
 
 // Functions main call  -------------------->>>>
 configuration() // function to setup the firebase database

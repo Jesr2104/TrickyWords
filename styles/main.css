@@ -226,11 +226,11 @@ mandatory{
     padding: 10px;
 }
 
-#trickingWordContainers{
+#trickyWordContainers{
     width: 100%;
 }
 
-#item-TrickingWords{
+#item-TrickyWords{
     border-radius: 15px; 
     border-left: solid 5px #cfcfcf; 
     margin: 8px 20px ; 
@@ -241,7 +241,7 @@ mandatory{
     font-family: 'Roboto', sans-serif;
 }
 
-#itemTrickingWord{
+#itemTrickyWord{
     display: flex; 
     color: white;
 }
@@ -257,6 +257,20 @@ mandatory{
     border-radius: 15px 0px 0px 15px;
 }
 
+/* select item on the table */
+.selected-row{
+    background-color: #089aa8 !important;
+    color: white;
+}
+
+#tableItemsRows{
+    background-color: rgb(46, 212, 185);
+    color: white;      
+    padding: 25px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+
 #numberOfItem{
     font-size: 45px;
 }
@@ -265,7 +279,7 @@ mandatory{
     width: 100%;
 }
 
-#informationTrickingWord{
+#informationTrickyWord{
     display: flex; 
     padding: 10px 10px 0px 10px;
 }

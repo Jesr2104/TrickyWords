@@ -222,57 +222,45 @@ mandatory{
 /**************************************************/
 #titleTableOflistOfWords{
     color: white; 
-    font-size: 25px; 
-    padding: 10px;
+    font-size: 20px; 
+    padding: 10px 15px;
 }
 
-#trickyWordContainers{
-    width: 100%;
-}
-
-#item-TrickyWords{
-    border-radius: 15px; 
-    border-left: solid 5px #cfcfcf; 
-    margin: 8px 20px ; 
-    box-shadow: 3px 3px 3px 1px rgba(205, 205, 205, 0.123); 
+#containerItemDiv{
     background-color: var(--itemsColors);
-
-    /* setup the roboto in all table */
-    font-family: 'Roboto', sans-serif;
+    border-radius: 15px;
 }
 
 #itemTrickyWord{
     display: flex; 
     color: white;
+    font-family: 'Roboto', sans-serif;
 }
 
 #idItem{
     display: flex; 
-    align-items: center; 
-    font-size: 30px; 
-    padding: 6px; 
+    align-items: center;  
+    padding: 5px; 
     color: white;    
 
+    /* Background of the number of the questions */
     background-color: #00000030;
     border-radius: 15px 0px 0px 15px;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* select item on the table */
 .selected-row{
-    background-color: #089aa8 !important;
-    color: white;
+    background-color: var(--titleApp);
 }
 
 #tableItemsRows{
-    background-color: rgb(46, 212, 185);
-    color: white;      
-    padding: 25px;
+    padding: 3px;
     border-radius: 15px;
-    font-size: 25px;
 }
 
 #numberOfItem{
-    font-size: 45px;
+    font-size: 25px;
 }
 
 #contentItem{
@@ -281,7 +269,7 @@ mandatory{
 
 #informationTrickyWord{
     display: flex; 
-    padding: 10px 10px 0px 10px;
+    padding: 5px 5px 0px 5px;
 }
 
 #wordContainer{
@@ -290,8 +278,8 @@ mandatory{
 }
 
 #labels_wordValue{
-    font-size: 45px;
-    text-shadow: 3px 3px rgba(0, 0, 0, 0.203);
+    font-size: 40px;
+    text-shadow: 2px 3px rgba(0, 0, 0, 0.203);
 }
 
 .labels_title{
@@ -300,10 +288,5 @@ mandatory{
 }
 
 .labels_informationValues{
-    font-size: 20px;
-}
-
-.field-label{
-    padding: 5px; 
-    line-height: 1.1;
+    font-size: 15px;
 }

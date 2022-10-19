@@ -223,23 +223,20 @@ function clearInsertForm(){
 
 // function to delete one tricky word from the server
 function deleteTrickyWord(){
-
+    //55555555555555555555555555555555555555555555555555555555555555555555555555
 }
 
 // function to get item selection
 function getItemSelection(itemCode){
-
-    var index;
     var table = document.getElementById('trickyWordContainers');
 
     for(var i = 0; i < table.rows.length; i++){
-        table.rows[i].classList.remove('selected-row')
+        table.rows[i].getElementsByTagName('td')[0].classList.remove('selected-row')
     }
 
     for(var i = 0; i < table.rows.length; i++){
-        table.rows[i].onclick = function(){
-            this.classList.add('selected-row');
-            console.log(this)
+        if(itemCode == table.rows[i].getElementsByTagName('td')[0]){
+            console.log(itemCode.classList.add('selected-row'))
         }
     }
 }
@@ -253,7 +250,7 @@ async function getDataFromDatabase(){
             snapshot.forEach(childSnapshot => {
                 trickWordList.push(childSnapshot.val())                
             });
-            //loadTrickyWordOntheTable(trickWordList)
+            loadTrickyWordOntheTable(trickWordList)
         } else {
             // case: data base is empty
             console.log("No data available")
@@ -262,7 +259,7 @@ async function getDataFromDatabase(){
 }
 
 // function to load the tricky word on the table
-/*function loadTrickyWordOntheTable(trickWordList){
+function loadTrickyWordOntheTable(trickWordList){
     count = 0;
     trickyWordContaines.innerHTML = ""
 
@@ -270,7 +267,7 @@ async function getDataFromDatabase(){
         trickyWordContaines.innerHTML +=  getItemSetup(trickWordList[count], count + 1)
         count += 1;
     }
-}*/
+}
 
 // function to get the type on text
 function getType(typeCode){
@@ -305,14 +302,14 @@ function capitalizeFirstLetter(string) {
 }
 
 // create the view of the item word
-/*function getItemSetup(item, numberItem){
+function getItemSetup(item, numberItem){
     questionList = ""
     
     Object.keys(item.questions).forEach(itemNew => {
         questionList += `
-        <div style="border: solid 1px white; border-radius: 5px; margin: 10px 0 10px 0; padding: 10px; background-color: rgba(0, 0, 0, 0.150);">
-            <div style="margin-bottom: 5px;">
-                <label style="font-size: 18px;"><u>${capitalizeFirstLetter(item.questions[itemNew].question)}</u></label>
+        <div style="border: solid 1px white; border-radius: 5px; margin: 5px 0 5px 0; padding: 7px; background-color: rgba(0, 0, 0, 0.150);">
+            <div style="margin-bottom: 2px;">
+                <label style="font-size: 16px;">${capitalizeFirstLetter(item.questions[itemNew].question)}</label>
             </div>
 
             <div style="display: flex;">
@@ -320,7 +317,7 @@ function capitalizeFirstLetter(string) {
                 <div style="margin-right: 10px;">
                     <div class="field" style="padding: 5px; line-height: 1.1;">
                         <label class="table_labels" style="display: block;font-size: 10px;">Correct Answer:</label>
-                        <label class="result_value" style="font-size: 20px;">${capitalizeFirstLetter(item.questions[itemNew].correctAnswer)}</label>
+                        <label class="result_value" style="font-size: 16px;">${capitalizeFirstLetter(item.questions[itemNew].correctAnswer)}</label>
                     </div>
                 </div>
 
@@ -329,7 +326,7 @@ function capitalizeFirstLetter(string) {
                 <div style="margin: 0 10px 0 10px;">
                     <div class="field" style="padding: 5px; line-height: 1.1;">
                         <label class="table_labels" style="display: block;font-size: 10px;">Option 1:</label>
-                        <label class="result_value" style="font-size: 20px;">${capitalizeFirstLetter(item.questions[itemNew].optiona)}</label>
+                        <label class="result_value" style="font-size: 16px;">${capitalizeFirstLetter(item.questions[itemNew].optiona)}</label>
                     </div>
                 </div>
 
@@ -338,7 +335,7 @@ function capitalizeFirstLetter(string) {
                 <div style="margin: 0 10px 0 10px;">
                     <div class="field" style="padding: 5px; line-height: 1.1;">
                         <label class="table_labels" style="display: block;font-size: 10px;">Option 2:</label>
-                        <label class="result_value" style="font-size: 20px;">${capitalizeFirstLetter(item.questions[itemNew].optionb)}</label>
+                        <label class="result_value" style="font-size: 16px;">${capitalizeFirstLetter(item.questions[itemNew].optionb)}</label>
                     </div>
                 </div>
 
@@ -347,14 +344,14 @@ function capitalizeFirstLetter(string) {
                 <div style="margin-left: 10px;">
                     <div class="field" style="padding: 5px; line-height: 1.1;">
                         <label class="table_labels" style="display: block;font-size: 10px;">Option 3:</label>
-                        <label class="result_value" style="font-size: 20px;">${capitalizeFirstLetter(item.questions[itemNew].optionc)}</label>
+                        <label class="result_value" style="font-size: 15px;">${capitalizeFirstLetter(item.questions[itemNew].optionc)}</label>
                     </div>
                 </div>
             </div>
         </div>
         `
     })
-    
+
     newItem = `
     <!-- Item Number ${numberItem} -->
     <div id="itemTrickyWord">
@@ -395,7 +392,7 @@ function capitalizeFirstLetter(string) {
                         </div>
                     </div>
 
-                    <div>
+                    <div style="padding-left: 8px;">
                         <div style="padding: 5px; line-height: 1.1;">
                             <label class="labels_title">lesson:</label>
                             <label class="labels_informationValues">${item.nLesson}</label>
@@ -406,28 +403,24 @@ function capitalizeFirstLetter(string) {
 
             <!-- questions lists -->
             <div style="padding: 0 10px 0 10px;">
-                <label style="font-size: 22px;">Questions</label>
-                <div style="background-color: white; padding: 0.03em; margin-bottom: 3px;"></div>
-                <div style="background-color: white; padding: 0.03em"></div>
+                <label style="font-size: 18px;">Questions</label>
+                <div style="background-color: white; padding: 1px;"></div>
                 ${questionList}
             </div>
         </div>
     </div>
-    `
-
-    itemContainer = `
-    <!-- newItemContainer -->
-        <tr style="width: 100%;">
-            <td style="cursor: pointer;" onclick="getItemSelection(this)">
-                <div id="item-TrickyWords">
-                    ${newItem}            
-                </div>
+    `    
+    newContainerItem = `
+        <tr>
+            <td id="tableItemsRows" onclick="getItemSelection(this)">
+                <div id="containerItemDiv">
+                    ${newItem}
+                </div> 
             </td>
         </tr>
     `
-
-    return itemContainer
-}*/
+    return newContainerItem
+}
 
 // Events control -------------------->>>>
 //-------------------------------------------------------------------------
@@ -448,7 +441,9 @@ document.getElementById('buttonsMenu_edit').addEventListener('click', (e) => {
     document.getElementById('trickyWordContainers').innerHTML += `
         <tr>
             <td id="tableItemsRows" onclick="getItemSelection(this)">
-                Element
+                <div style="background-color: #0C81FF !important;">
+                    Element
+                </div>                
             </td>
         </tr>
     `

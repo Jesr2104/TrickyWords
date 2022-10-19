@@ -437,18 +437,6 @@ insertWord_btn.addEventListener('submit', insertNewTrickyWord)
 // event to add a question on the form 
 addQuestion_btn.addEventListener('click', insertQuestion)
 
-document.getElementById('buttonsMenu_edit').addEventListener('click', (e) => {
-    document.getElementById('trickyWordContainers').innerHTML += `
-        <tr>
-            <td id="tableItemsRows" onclick="getItemSelection(this)">
-                <div style="background-color: #0C81FF !important;">
-                    Element
-                </div>                
-            </td>
-        </tr>
-    `
-})
-
 // Functions main call  -------------------->>>>
 configuration() // function to setup the firebase database
 getDataFromDatabase()

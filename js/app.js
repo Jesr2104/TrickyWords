@@ -1,6 +1,8 @@
 // vars 
 //--------------------------------------------------------------------------
 var numberOfQuestions = 2
+var SelectTrickyWord = ""
+var SelectTrickyWordUID = ""
 const endpointTrickyWordsDB = 'TrickyWord_BooksLisDB'
 
 // Modals
@@ -223,22 +225,108 @@ function clearInsertForm(){
 
 // function to delete one tricky word from the server
 function deleteTrickyWord(){
-    //55555555555555555555555555555555555555555555555555555555555555555555555555
+    //getTrickyWord_id(SelectTrickyWord)
+
+    /*if(SelectTrickyWord != ""){
+        if(SelectTrickyWordUID != ""){
+            // reference to delete the rest on the information to the firebase
+            firebase.database().ref(`${endpointTrickyWordsDB}/${SelectTrickyWordUID}`).remove()    
+            console.log("Se Elemina")    
+        } else {
+                
+        }
+    } else {
+        console.log("no se ha seleccionado ningun palabra")
+    }*/
+
+
+
+    const dbRef = firebase.database().ref()
+    dbRef.child(endpointTrickyWordsDB).get().then((snapshot) => {
+        if(snapshot.exists()) {
+            var trickWordList = [];
+            snapshot.forEach(childSnapshot => {
+                trickWordList.push(childSnapshot.val())                
+            });
+            
+            count = 0
+            while(count < trickWordList.length){
+                if(trickWordList[count].trickyWord == SelectTrickyWord){
+                    trickWordList[count].uid
+
+                    if(SelectTrickyWord != ""){
+                        if(SelectTrickyWordUID != ""){
+                            // reference to delete the rest on the information to the firebase
+                            firebase.database().ref(`${endpointTrickyWordsDB}/${SelectTrickyWordUID}`).remove()
+                            getDataFromDatabase()
+                            console.log("Se Elemina")    
+                        } else {
+                                
+                        }
+                    } else {
+                        console.log("no se ha seleccionado ningun palabra")
+                    }              
+                    
+                }
+                count +=1;
+            }
+        } else {
+            // case: data base is empty
+            console.log("No data available")
+        }
+    })
 }
 
 // function to get item selection
-function getItemSelection(itemCode){
+async function getItemSelection(itemCode){
     var table = document.getElementById('trickyWordContainers');
+    SelectTrickyWordUID = ""
 
     for(var i = 0; i < table.rows.length; i++){
         table.rows[i].getElementsByTagName('td')[0].classList.remove('selected-row')
     }
-
     for(var i = 0; i < table.rows.length; i++){
         if(itemCode == table.rows[i].getElementsByTagName('td')[0]){
-            console.log(itemCode.classList.add('selected-row'))
+            itemCode.classList.add('selected-row')
+
+            TrickyWord = itemCode
+                .childNodes[1]
+                .childNodes[3]
+                .childNodes[5]
+                .childNodes[3]
+                .childNodes[1]
+                .childNodes[1]
+                .childNodes[3]
+                .innerText            
+            SelectTrickyWord = TrickyWord 
+            getTrickyWord_id(TrickyWord)
         }
     }
+}
+
+async function getTrickyWord_id(trickWord){
+    const dbRef = firebase.database().ref()
+    dbRef.child(endpointTrickyWordsDB).get().then((snapshot) => {
+        if(snapshot.exists()) {
+            var trickWordList = [];
+            snapshot.forEach(childSnapshot => {
+                trickWordList.push(childSnapshot.val())                
+            });
+            
+            count = 0
+            while(count < trickWordList.length){
+                if(trickWordList[count].trickyWord == trickWord){
+                    SelectTrickyWordUID = trickWordList[count].uid
+                    
+                    
+                }
+                count +=1;
+            }
+        } else {
+            // case: data base is empty
+            console.log("No data available")
+        }
+    })
 }
 
 // function to get information fron the server
@@ -436,6 +524,8 @@ insertWord_btn.addEventListener('submit', insertNewTrickyWord)
 
 // event to add a question on the form 
 addQuestion_btn.addEventListener('click', insertQuestion)
+
+document.getElementById('buttonsMenu_delete').addEventListener('click', deleteTrickyWord)
 
 // Functions main call  -------------------->>>>
 configuration() // function to setup the firebase database

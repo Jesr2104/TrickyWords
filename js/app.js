@@ -225,22 +225,6 @@ function clearInsertForm(){
 
 // function to delete one tricky word from the server
 function deleteTrickyWord(){
-    //getTrickyWord_id(SelectTrickyWord)
-
-    /*if(SelectTrickyWord != ""){
-        if(SelectTrickyWordUID != ""){
-            // reference to delete the rest on the information to the firebase
-            firebase.database().ref(`${endpointTrickyWordsDB}/${SelectTrickyWordUID}`).remove()    
-            console.log("Se Elemina")    
-        } else {
-                
-        }
-    } else {
-        console.log("no se ha seleccionado ningun palabra")
-    }*/
-
-
-
     const dbRef = firebase.database().ref()
     dbRef.child(endpointTrickyWordsDB).get().then((snapshot) => {
         if(snapshot.exists()) {
@@ -252,22 +236,28 @@ function deleteTrickyWord(){
             count = 0
             while(count < trickWordList.length){
                 if(trickWordList[count].trickyWord == SelectTrickyWord){
-                    trickWordList[count].uid
-
                     if(SelectTrickyWord != ""){
                         if(SelectTrickyWordUID != ""){
-                            // reference to delete the rest on the information to the firebase
-                            firebase.database().ref(`${endpointTrickyWordsDB}/${SelectTrickyWordUID}`).remove()
-                            getDataFromDatabase()
-                            console.log("Se Elemina")    
-                        } else {
-                                
+                            swal({
+                                title: "Are you sure?",
+                                text: `${SelectTrickyWord}: Once deleted, you will not be able to recover this trickyWord!`,
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                              })
+                              .then((willDelete) => {
+                                if (willDelete) {
+                                    // reference to delete the rest on the information to the firebase
+                                    firebase.database().ref(`${endpointTrickyWordsDB}/${SelectTrickyWordUID}`).remove();
+                                    getDataFromDatabase();
+                                    swal("Poof! Your product has been deleted!", { icon: "success", });
+                                } else {
+                                    swal("Your trickyWord is safe!");
+                                }
+                            });                                
                         }
-                    } else {
-                        console.log("no se ha seleccionado ningun palabra")
-                    }              
-                    
-                }
+                    }                     
+                } else { swal("No trickyWord selected!");}
                 count +=1;
             }
         } else {
@@ -316,9 +306,7 @@ async function getTrickyWord_id(trickWord){
             count = 0
             while(count < trickWordList.length){
                 if(trickWordList[count].trickyWord == trickWord){
-                    SelectTrickyWordUID = trickWordList[count].uid
-                    
-                    
+                    SelectTrickyWordUID = trickWordList[count].uid            
                 }
                 count +=1;
             }

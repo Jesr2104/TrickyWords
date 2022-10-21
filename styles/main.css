@@ -9,25 +9,46 @@
 
      --mainheader: #282b3f;
      --mainBackground: #2c3246;
-
      --titleApp: #d77420;
      --titleHover: #67abf3;
-
      --itemsColors: #0C81FF;
-
      --button_insert: #27cbb9;
      --button_edit: #febc46;
      --button_delete: #e7537f;
-
      --mainItemsColors: #b769e9;
 }
 
 /**************************************************/
 /* General directives                             */
 /**************************************************/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height: calc(100vh - 25px);
+    background-color: var(--mainBackground);
+}
+
 body{
-    font-family: 'Comfortaa', cursive; 
-    background-color: var(--mainBackground); 
+    height: 100%;
+    padding-bottom: 30px;
+}
+
+#main-header{
+    height: auto;
+    min-height: 75px;
+}
+
+#main-content{
+    height: 100%;
+    margin: 25px;
+    background-color: rgb(72, 146, 221); 
+
+    overflow: hidden; 
+    overflow-y: scroll;            
 }
 
 form{
@@ -156,11 +177,19 @@ mandatory{
     font-weight: bold;
 }
 
-.main-content{
-    width: 100%;
-    /*height: 90vh; height of the main content*/
-    padding: 1.0rem 3.0rem;
+.main-header{
+    height: 10%;
+    background-color: #AF3359;
 }
+
+/*.main-content{
+    height: 90%;
+    margin: 25px; 
+    background-color: #34AF8A;
+
+    overflow: hidden; 
+    overflow-y: scroll;
+}*/
 
 /**************************************************/
 /* form to insert questions                       */

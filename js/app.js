@@ -337,12 +337,20 @@ async function getDataFromDatabase(){
 // function to load the tricky word on the table
 function loadTrickyWordOntheTable(trickWordList){
     count = 0;
-    trickyWordContaines.innerHTML = ""
+    //trickyWordContaines.innerHTML = ""
 
     while(count < trickWordList.length){
-        trickyWordContaines.innerHTML +=  getItemSetup(trickWordList[count], count + 1)
+        //trickyWordContaines.innerHTML +=  getItemSetup(trickWordList[count], count + 1)
         count += 1;
     }
+}
+
+// function to resize the main boxe on the screen
+function setSizeScreen(){
+    const block1 = document.getElementById('main-header')
+    const block2 = document.getElementById('main-content')
+    const mainBody = document.getElementById('bodyContainer')
+    block2.style.height = ((mainBody.offsetHeight - 30) - block1.offsetHeight) + 'px'
 }
 
 // function to get the type on text
@@ -513,8 +521,13 @@ insertWord_btn.addEventListener('submit', insertNewTrickyWord)
 // event to add a question on the form 
 addQuestion_btn.addEventListener('click', insertQuestion)
 
+// button to delete the item fron the database
 document.getElementById('buttonsMenu_delete').addEventListener('click', deleteTrickyWord)
+
+// event to check when the web is resize
+window.addEventListener('resize', setSizeScreen);
 
 // Functions main call  -------------------->>>>
 configuration() // function to setup the firebase database
 getDataFromDatabase()
+setSizeScreen();

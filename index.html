@@ -27,14 +27,14 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
-    <body>
-        <header>
+    <body id="bodyContainer">
+        <header id="main-header">
             <!-- Name and link to the home -->
             <div id="containerHeader">
-                <!-- link on the logo and name -->
+                <!-- link on the logo and name --> 
                 <div id="logoAndName">
                     <a id="link_main" href="/">
-                        <img id="logoHeader" src="image/logo-app.png" width="60px" height="60px">
+                        <img id="logoHeader" src="image/logo-app.png" width="110px" height="60px">
                         <span id="titleHeader">TrickyWords API Manager</span>
                     </a>
                 </div>
@@ -60,27 +60,67 @@
                 </div>
             </div>
         </header>
+    
+        <main id="main-content">
+            <div>
+                <p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p>
+                <p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p><p>Examples</p>
+            </div>        
+        </main>
 
-        <main class="main-content">
+        <!--<header id="main-header">
+             Name and link to the home 
+            <div id="containerHeader">
+                 link on the logo and name 
+                <div id="logoAndName">
+                    <a id="link_main" href="/">
+                        <img id="logoHeader" src="image/logo-app.png" width="110px" height="60px">
+                        <span id="titleHeader">TrickyWords API Manager</span>
+                    </a>
+                </div>
+
+              options of the web 
+                <div id="options">
+                    <div id="containerbuttonsMenu">
+                        <button id="buttonsMenu_insert" class="buttonsMenu">
+                            <span id="buttonsMenu_text"> Insert </span>
+                            <span id="buttonsMenu_icon" class="material-icons"> add </span>
+                        </button>
+    
+                        <button id="buttonsMenu_edit" class="buttonsMenu">
+                            <span id="buttonsMenu_text"> Edit </span>
+                            <span id="buttonsMenu_icon" class="material-icons"> edit </span>
+                        </button>
+    
+                        <button id="buttonsMenu_delete" class="buttonsMenu">
+                            <span id="buttonsMenu_text"> Delete </span>
+                            <span id="buttonsMenu_icon" class="material-icons"> delete </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>-->
+
+        <!--<main class="main-content">
             <div id="WordsList">
-                <!-- Contect of the list of the tricky words -->
+                 Contect of the list of the tricky words 
                 <div id="titleTableOflistOfWords">
                     <div style="background-color: white; padding: 0.06em; margin-bottom: 5px;"></div>
                     <h1 style="text-align: center; font-size: 35px;"> Trickywords Items List.</h1>
                     <div style="background-color: white; padding: 0.06em; margin-top: 5px;"></div>
                 </div>
                 <table style="width: 100%;"> 
-                    <tbody id="trickyWordContainers">
+                    <tbody id="trickyWordContainers" >
 
                     </tbody>
                 </table>
             </div>
-        </main>
+        </main>-->
 
         <!-- Modals -->
         <!----------------------------------------->
         <!-- Card to insert new word -->
-        <div class="modal" id="modal-insert-word">
+        <div class="modal" id="modal-insert-word" style="display: none;">
             <div class="modal-background"></div>
             <div class="modal-card">
 

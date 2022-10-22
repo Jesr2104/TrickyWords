@@ -337,10 +337,10 @@ async function getDataFromDatabase(){
 // function to load the tricky word on the table
 function loadTrickyWordOntheTable(trickWordList){
     count = 0;
-    //trickyWordContaines.innerHTML = ""
+    trickyWordContaines.innerHTML = ""
 
     while(count < trickWordList.length){
-        //trickyWordContaines.innerHTML +=  getItemSetup(trickWordList[count], count + 1)
+        trickyWordContaines.innerHTML +=  getItemSetup(trickWordList[count], count + 1)
         count += 1;
     }
 }

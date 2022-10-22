@@ -45,10 +45,12 @@ body{
 #main-content{
     height: 100%;
     margin: 25px;
+    padding: 25px;
+    border-radius: 10px;
     background-color: rgb(72, 146, 221); 
 
     overflow: hidden; 
-    overflow-y: scroll;            
+    overflow-y: scroll;
 }
 
 form{
@@ -252,7 +254,8 @@ mandatory{
 #titleTableOflistOfWords{
     color: white; 
     font-size: 20px; 
-    padding: 10px 15px;
+    padding: 10px 35px;
+    padding-bottom: 20px;
 }
 
 #containerItemDiv{

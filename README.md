@@ -8,6 +8,10 @@
 
 # MockUp of the Android App
 
+<p>
+  structure and initial behavior of the Android App. Here we will explain part of what the app will be and how the project is planned.
+</p>
+
 <img style="width: 100%; height: auto;" src="https://firebasestorage.googleapis.com/v0/b/myprojects-jesr2104.appspot.com/o/appStructureTrickyWords.png?alt=media&token=a2f0a042-0567-41a1-9244-9361537a6225">
 
 

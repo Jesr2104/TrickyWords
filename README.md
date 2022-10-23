@@ -56,3 +56,8 @@
 
 <h2>Link to the project.</h2>
 
+<a href="https://jesr2104.github.io/TrickyWords/">Jump to the TrickyWord Api Manager</a>
+
+
+
+

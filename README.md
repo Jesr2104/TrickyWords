@@ -1,6 +1,6 @@
 # TrickyWords.
 <p>
-  This project consists of a CRUD manager to insert the data (Words with questions that help memorize and test us if we know their meaning). This information will be   consumed from an Android application, in a small game, based on the content of the Callan method books.
+  This project consists of a CRUD management to insert the data (Words with questions that help you memorise and test you if you know their meaning). This information will be consumed from an Android application, in a small game, based on the content of the Callan method books.
 </p>
 
 <img style="width: 100%; height: auto;" src="https://firebasestorage.googleapis.com/v0/b/myprojects-jesr2104.appspot.com/o/apiManagerTrickyWords.png?alt=media&token=70b6bb7c-bb8e-43cc-8134-5bfcdbac4796">
@@ -14,7 +14,7 @@
 
 # Features implemented in the project.
 <table>
-  <tr> <td>⚩  CRUD, de la base de datos productos Create, Read, Update, Delete.</td> </tr>
+  <tr> <td>⚩ CRUD, the products data base (Create, Read, Update, Delete).</td> </tr>
   <tr> <td>⚩ Validation of some of the elements to be inserted.</td> </tr>
   <tr> <td>⚩ Validation of some of the elements to be inserted.</td> </tr>  
 </table>
@@ -22,9 +22,9 @@
 # Features that should be added for use in production.
 <table>
   <tr> <td>♠ Security (User validation)</td> </tr>
-  <tr> <td>♠ Let record the user who insert the word</td> </tr>
+  <tr> <td>♠ Let record the user who inserts the words</td> </tr>
   <tr> <td>♠ Finish edit form</td> </tr>
-  <tr> <td>♠ Fill in the complete data per book in the database.</td> </tr>
+  <tr> <td>♠ Fill in the complete data per book in the database</td> </tr>
   <tr> <td>♠ Check that the word does not exist before inserting it</td> </tr>
 </table>
 
@@ -43,7 +43,7 @@
 </table>
 
 <table>
-    <tr> <th> Database. </th> </tr>
+    <tr> <th> Database </th> </tr>
     <tr> <td> Firebase DataBase Realtime </td> </tr>
 </table>
 
